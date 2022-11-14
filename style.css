@@ -1,0 +1,11 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-image: url("background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Sono', sans-serif;
+    font-weight: 400;
+}
