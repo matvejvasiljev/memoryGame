@@ -1,11 +1,50 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
-body{
+
+html{
+    min-height: 100%;
+}
+
+body {
     background-image: url("background.png");
     background-repeat: no-repeat;
     background-size: cover;
     font-family: 'Sono', sans-serif;
     font-weight: 400;
+}
+
+h1 {
+    text-shadow: 5px 3px 5px black;
+    color: white;
+    font-size: 50px;
+    text-align: center;
+    margin: 25px 0;
+}
+
+p {
+    text-align: center;
+    text-shadow: 3px 2px 3px black;
+    color: white;
+    font-size: 25px;
+}
+
+#game {
+    max-width: 1000px;
+    font-size: 0;
+    margin: auto;
+    margin-top: 50px;
+}
+
+#game img {
+    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.5);
+    width: calc(100% / 6 - 10px);
+    margin: 5px;
+    transition: 0.1s;
+}
+
+#game img:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
 }
