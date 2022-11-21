@@ -1,10 +1,13 @@
-let game = document.getElementById("game")
+let winningText = document.getElementById("winningText")
 let attemptCount = document.getElementById("attempts")
+let game = document.getElementById("game")
+
 let cardClosed = "./cards/cardClosed.jpg"
+
 let attempts = 0
+let points = 0
 
 let images = []
-
 let opened = []
 
 for (let i = 0; i < 12; i++) {
@@ -38,7 +41,14 @@ for (let i = 0; i < 24; i++) {
             attemptCount.innerHTML = "Attempts: " + attempts
             if (opened[0].src == opened[1].src) {
                 console.log("correct");
+                points += 1
                 opened = []
+                if (points > 11) {
+                    winningText.style.transform = "scale(1)"
+                    setTimeout(function(){
+                        winningText.style.animation = "glow 3s ease-in-out infinite alternate"
+                    }, 1000)
+                }
             }
             else {
                 console.log("incorrect");
