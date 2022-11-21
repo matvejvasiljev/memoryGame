@@ -1,5 +1,7 @@
 let game = document.getElementById("game")
+let attemptCount = document.getElementById("attempts")
 let cardClosed = "./cards/cardClosed.jpg"
+let attempts = 0
 
 let images = []
 
@@ -32,6 +34,8 @@ for (let i = 0; i < 24; i++) {
         img.src = "./cards/" + images[i]
         opened.push(img)
         if (opened.length > 1) {
+            attempts += 1
+            attemptCount.innerHTML = "Attempts: " + attempts
             if (opened[0].src == opened[1].src) {
                 console.log("correct");
                 opened = []
