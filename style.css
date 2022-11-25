@@ -59,7 +59,13 @@ p {
 .balloon {
     position: absolute;
     transition: 5s;
-    width: 200px;
+    height: 550px;
+}
+
+#balloons{
+    background-color: aqua;
+    position: absolute;
+    bottom: 0;
 }
 
 @keyframes glow {
@@ -72,7 +78,7 @@ p {
     }
 }
 
-@keyframes rise {
+/* @keyframes rise {
     0% {
         top: 100%;
     }
@@ -80,4 +86,4 @@ p {
     100% {
         top: -700px;
     }
-}
+} */

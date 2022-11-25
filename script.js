@@ -20,15 +20,15 @@ function winAnim() {
         let animTime = Math.random() * 3 + 3
 
         balloon.style.left = Math.random() * window.innerWidth - 100 + "px"
-        balloon.style.animation = "rise " + animTime + "s ease-in 1 normal"
-        setTimeout(() => {
-            balloon.style.display = "none"
-        }, animTime * 1000 - 100);
+        balloon.style.top = "0"
+        balloon.style.transform = "translateY(-" + (window.innerHeight + 550) + "px) " + "scale(" + Math.floor((Math.random() / 2 + 0.5) * 100) / 100 + ")"
+        // balloon.style.animation = "rise " + animTime + "s ease-in 1 normal"
+        // setTimeout(() => {
+        //     balloon.style.display = "none"
+        // }, animTime * 1000 - 100);
         balloon.style.filter = "hue-rotate(" + Math.floor(Math.random() * 360) + "deg)"
-        balloon.style.transform = "scale(" + Math.floor((Math.random() / 2 + 0.5) * 100) / 100 + ")"
     }
 }
-
 
 
 
@@ -39,7 +39,7 @@ for (let i = 0; i < 12; i++) {
 
 for (let i = images.length - 1; i > 0; i--) {
     let randomNumber = Math.floor(Math.random() * (i + 1))
-    // randomNumber = i
+    randomNumber = i
     let temporary = images[i]
     images[i] = images[randomNumber]
     images[randomNumber] = temporary
