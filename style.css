@@ -52,20 +52,34 @@ p {
 }
 
 #game img:hover {
-    transform: scale(1.05);
-    filter: brightness(1.1);
+    transform: scale(1.05) !important;
+    filter: brightness(1.1) !important;
 }
 
 .balloon {
     position: absolute;
-    transition: 5s;
     height: 550px;
+    bottom: 0;
+    transform: translateY(100%);
 }
 
-#balloons{
-    background-color: aqua;
-    position: absolute;
+#balloons {
+    position: fixed;
     bottom: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+#restart {
+    margin-right: 800px;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+
+#restart:hover {
+    scale: 1.1;
 }
 
 @keyframes glow {
