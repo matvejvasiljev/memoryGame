@@ -54,7 +54,7 @@ restart.onclick = function () {
     for (let i = images.length - 1; i > 0; i--) {
         let randomNumber = Math.floor(Math.random() * (i + 1))
         let temporary = images[i]
-        randomNumber = i
+        // randomNumber = i
         images[i] = images[randomNumber]
         images[randomNumber] = temporary
     }
@@ -69,7 +69,7 @@ for (let i = 0; i < 12; i++) {
 
 for (let i = images.length - 1; i > 0; i--) {
     let randomNumber = Math.floor(Math.random() * (i + 1))
-    randomNumber = i
+    // randomNumber = i
     let temporary = images[i]
     images[i] = images[randomNumber]
     images[randomNumber] = temporary
@@ -111,7 +111,7 @@ for (let i = 0; i < 24; i++) {
                 points += 1
                 opened = []
 
-                if (points > 1) {
+                if (points > 11) {
                     winningText.style.transform = "scale(1)"
                     for (let card of cards) {
                         card.style.transform = "scale(1)"
