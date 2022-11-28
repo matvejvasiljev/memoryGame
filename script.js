@@ -4,7 +4,7 @@ let attemptCount = document.getElementById("attempts")
 let game = document.getElementById("game")
 let restart = document.getElementById("restart")
 
-let cardClosed = "./cards/cardClosed.jpg"
+let cardClosed = "/cards/cardClosed.jpg"
 
 let attempts = 0
 let points = 0
@@ -49,6 +49,14 @@ restart.onclick = function () {
         card.style.transform = "scale(1)"
         card.style.filter = "saturate(1)"
     }
+    for (let i = images.length - 1; i > 0; i--) {
+        let randomNumber = Math.floor(Math.random() * (i + 1))
+        let temporary = images[i]
+        randomNumber = i
+        images[i] = images[randomNumber]
+        images[randomNumber] = temporary
+    }
+
 }
 
 
@@ -76,13 +84,13 @@ for (let i = 0; i < 24; i++) {
 
     img.onclick = function () {
         console.log(images[i]);
-        img.src = "./cards/" + images[i]
+        img.src = "/cards/" + images[i]
         opened.push(img)
 
         img.style.pointerEvents = "none"
 
         if (opened.length > 1) {
-            let cards = document.getElementsByTagName("img")
+            let cards = game.getElementsByTagName("img")
             attempts += 1
             attemptCount.innerHTML = "Attempts: " + attempts
 
@@ -96,10 +104,12 @@ for (let i = 0; i < 24; i++) {
                 opened[1].style.filter = "saturate(0.6)"
                 opened[0].style.pointerEvents = "none"
                 opened[1].style.pointerEvents = "none"
+                opened[0].classList.add("correct")
+                opened[1].classList.add("correct")
                 points += 1
                 opened = []
 
-                if (points > 11) {
+                if (points > 1) {
                     winningText.style.transform = "scale(1)"
                     for (let card of cards) {
                         card.style.transform = "scale(1)"
@@ -121,7 +131,9 @@ for (let i = 0; i < 24; i++) {
                     opened[1].src = cardClosed
                     opened = []
                     for (let card of cards) {
-                        card.style.pointerEvents = "auto"
+                        if (card.src.includes(cardClosed)) {
+                            card.style.pointerEvents = "auto"
+                        }
                     }
                 }, 1000);
             }
