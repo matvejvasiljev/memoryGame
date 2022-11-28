@@ -35,6 +35,8 @@ p {
     font-size: 75px;
     transform: scale(0);
     transition: 1s;
+    width: 50%;
+    margin: auto;
 }
 
 #game {

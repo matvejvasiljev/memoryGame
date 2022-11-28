@@ -28,11 +28,13 @@ function winAnim() {
 
         balloon.style.left = Math.random() * window.innerWidth - 100 + "px"
         balloon.style.transform = "translateY(-" + (window.innerHeight + 550) + "px) " + "scale(" + balloon.dataset.scale + ")"
-        // balloon.style.animation = "rise " + animTime + "s ease-in 1 normal"
-        // setTimeout(() => {
-        //     balloon.style.display = "none"
-        // }, animTime * 1000 - 100);
     }
+    setTimeout(() => {
+        for (let balloon of balloons.children) {
+            balloon.style.transition = "0s"
+            balloon.style.transform = "translateY(100%)"
+        }
+    }, 6000);
 }
 
 restart.onclick = function () {
