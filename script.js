@@ -37,15 +37,17 @@ function winAnim() {
 
 restart.onclick = function () {
     opened = []
+    points = 0
+    attempts = 0
+    attemptCount.innerHTML = "Attempts: " + attempts
+    winningText.style.animation = "none"
+    winningText.style.transform = "scale(0)"
     for (let card of game.children) {
         card.src = cardClosed
         card.style.pointerEvents = "auto"
         card.style.transition = "0.1s"
         card.style.transform = "scale(1)"
         card.style.filter = "saturate(1)"
-
-        attempts = 0
-        attemptCount.innerHTML = "Attempts: " + attempts
     }
 }
 
