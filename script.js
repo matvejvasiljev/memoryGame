@@ -11,6 +11,7 @@ let points = 0
 
 let images = []
 let opened = []
+
 for (let i = 0; i < 20; i++) {
     let balloon = document.createElement("img")
     balloon.classList.add("balloon")
@@ -20,6 +21,7 @@ for (let i = 0; i < 20; i++) {
     balloon.style.filter = "hue-rotate(" + Math.floor(Math.random() * 360) + "deg)"
     balloon.setAttribute("data-scale", Math.floor((Math.random() / 2 + 0.5) * 100) / 100)
 }
+
 function winAnim() {
     for (let balloon of balloons.children) {
         let animTime = Math.random() * 3 + 3
@@ -36,6 +38,7 @@ function winAnim() {
         }
     }, 6000);
 }
+
 
 restart.onclick = function () {
     opened = []
