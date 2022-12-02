@@ -20,6 +20,7 @@ for (let i = 0; i < 20; i++) {
 
     balloon.style.filter = "hue-rotate(" + Math.floor(Math.random() * 360) + "deg)"
     balloon.setAttribute("data-scale", Math.floor((Math.random() / 2 + 0.5) * 100) / 100)
+    balloon.style.left = Math.random() * window.innerWidth - 100 + "px"
 }
 
 function winAnim() {
@@ -28,13 +29,13 @@ function winAnim() {
         balloon.style.transition = animTime + "s"
         console.log("win animation");
 
-        balloon.style.left = Math.random() * window.innerWidth - 100 + "px"
         balloon.style.transform = "translateY(-" + (window.innerHeight + 550) + "px) " + "scale(" + balloon.dataset.scale + ")"
     }
     setTimeout(() => {
         for (let balloon of balloons.children) {
             balloon.style.transition = "0s"
             balloon.style.transform = "translateY(100%)"
+            balloon.style.left = Math.random() * window.innerWidth - 100 + "px"
         }
     }, 6000);
 }
@@ -89,59 +90,73 @@ for (let i = 0; i < 24; i++) {
 
     img.onclick = function () {
         console.log(images[i]);
-        img.src = "/cards/" + images[i]
-        opened.push(img)
+        img.style.transform = "scaleX(0)"
+
+        setTimeout(() => {
+            img.src = "/cards/" + images[i]
+            img.style.transform = "scaleX(1)"
+            opened.push(img)
+        }, 100);
 
         img.style.pointerEvents = "none"
 
-        if (opened.length > 1) {
-            let cards = game.getElementsByTagName("img")
-            attempts += 1
-            attemptCount.innerHTML = "Attempts: " + attempts
+        setTimeout(() => {
 
-            if (opened[0].src == opened[1].src) {
-                console.log("correct");
-                opened[0].style.transition = "1s"
-                opened[1].style.transition = "1s"
-                opened[0].style.transform = "scale(0.9)"
-                opened[1].style.transform = "scale(0.9)"
-                opened[0].style.filter = "saturate(0.6)"
-                opened[1].style.filter = "saturate(0.6)"
-                opened[0].style.pointerEvents = "none"
-                opened[1].style.pointerEvents = "none"
-                opened[0].classList.add("correct")
-                opened[1].classList.add("correct")
-                points += 1
-                opened = []
+            if (opened.length > 1) {
+                let cards = game.getElementsByTagName("img")
+                attempts += 1
+                attemptCount.innerHTML = "Attempts: " + attempts
 
-                if (points > 11) {
-                    winningText.style.transform = "scale(1)"
-                    for (let card of cards) {
-                        card.style.transform = "scale(1)"
-                        card.style.filter = "saturate(1)"
-                    }
-                    setTimeout(function () {
-                        winningText.style.animation = "glow 3s ease-in-out infinite alternate"
-                    }, 1000)
-                    winAnim()
-                }
-            }
-            else {
-                console.log("incorrect");
-                for (let card of cards) {
-                    card.style.pointerEvents = "none"
-                }
-                setTimeout(() => {
-                    opened[0].src = cardClosed
-                    opened[1].src = cardClosed
+                if (opened[0].src == opened[1].src) {
+                    console.log("correct");
+                    opened[0].style.transition = "1s"
+                    opened[1].style.transition = "1s"
+                    opened[0].style.transform = "scale(0.9)"
+                    opened[1].style.transform = "scale(0.9)"
+                    opened[0].style.filter = "saturate(0.6)"
+                    opened[1].style.filter = "saturate(0.6)"
+                    opened[0].style.pointerEvents = "none"
+                    opened[1].style.pointerEvents = "none"
+                    opened[0].classList.add("correct")
+                    opened[1].classList.add("correct")
+                    points += 1
                     opened = []
-                    for (let card of cards) {
-                        if (card.src.includes(cardClosed)) {
-                            card.style.pointerEvents = "auto"
+
+                    if (points > 11) {
+                        winningText.style.transform = "scale(1)"
+                        for (let card of cards) {
+                            card.style.transform = "scale(1)"
+                            card.style.filter = "saturate(1)"
                         }
+                        setTimeout(function () {
+                            winningText.style.animation = "glow 3s ease-in-out infinite alternate"
+                        }, 1000)
+                        winAnim()
                     }
-                }, 1000);
+                }
+                else {
+                    console.log("incorrect");
+                    for (let card of cards) {
+                        card.style.pointerEvents = "none"
+                    }
+                    setTimeout(() => {
+                        opened[0].style.transform = "scaleX(0)"
+                        opened[1].style.transform = "scaleX(0)"
+                        setTimeout(() => {
+                            opened[0].src = cardClosed
+                            opened[1].src = cardClosed
+                            opened[0].style.transform = "scaleX(1)"
+                            opened[1].style.transform = "scaleX(1)"
+                            opened = []
+                            for (let card of cards) {
+                                if (card.src.includes(cardClosed)) {
+                                    card.style.pointerEvents = "auto"
+                                }
+                            }
+                        }, 100);
+                    }, 1000);
+                }
             }
-        }
+        }, 100);
     }
 }
