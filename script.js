@@ -90,17 +90,14 @@ for (let i = 0; i < 24; i++) {
 
     img.onclick = function () {
         console.log(images[i]);
-        img.style.transform = "scaleX(0)"
+        img.style.pointerEvents = "none"
 
+        img.style.transform = "scaleX(0)"
+        console.log(img.style);
         setTimeout(() => {
             img.src = "/cards/" + images[i]
             img.style.transform = "scaleX(1)"
             opened.push(img)
-        }, 100);
-
-        img.style.pointerEvents = "none"
-
-        setTimeout(() => {
 
             if (opened.length > 1) {
                 let cards = game.getElementsByTagName("img")
@@ -109,18 +106,21 @@ for (let i = 0; i < 24; i++) {
 
                 if (opened[0].src == opened[1].src) {
                     console.log("correct");
-                    opened[0].style.transition = "1s"
-                    opened[1].style.transition = "1s"
-                    opened[0].style.transform = "scale(0.9)"
-                    opened[1].style.transform = "scale(0.9)"
-                    opened[0].style.filter = "saturate(0.6)"
-                    opened[1].style.filter = "saturate(0.6)"
-                    opened[0].style.pointerEvents = "none"
-                    opened[1].style.pointerEvents = "none"
-                    opened[0].classList.add("correct")
-                    opened[1].classList.add("correct")
+                    setTimeout(() => {
+                        opened[0].style.transition = "1s"
+                        opened[1].style.transition = "1s"
+                        opened[0].style.transform = "scale(0.9)"
+                        opened[1].style.transform = "scale(0.9)"
+                        opened[0].style.filter = "saturate(0.6)"
+                        opened[1].style.filter = "saturate(0.6)"
+                        opened[0].style.pointerEvents = "none"
+                        opened[1].style.pointerEvents = "none"
+                        opened[0].classList.add("correct")
+                        opened[1].classList.add("correct")
+                        opened = []
+                    }, 100);
                     points += 1
-                    opened = []
+
 
                     if (points > 11) {
                         winningText.style.transform = "scale(1)"
@@ -145,8 +145,8 @@ for (let i = 0; i < 24; i++) {
                         setTimeout(() => {
                             opened[0].src = cardClosed
                             opened[1].src = cardClosed
-                            opened[0].style.transform = "scaleX(1)"
-                            opened[1].style.transform = "scaleX(1)"
+                            opened[0].style = "pointer-events: auto"
+                            opened[1].style = "pointer-events: auto"
                             opened = []
                             for (let card of cards) {
                                 if (card.src.includes(cardClosed)) {
@@ -158,5 +158,7 @@ for (let i = 0; i < 24; i++) {
                 }
             }
         }, 100);
+
+
     }
 }
